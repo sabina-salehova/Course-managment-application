@@ -12,8 +12,8 @@ namespace ConsoleApp.Models
         public Categories category;
         public bool IsOnline;
         byte _limit;
-        public byte Limit { get { return _limit; } }
-        public List<Student> StudentOfGroup;
+        public byte Limit => _limit;
+        public List<Student> StudentsOfGroup;
 
         static Group()
         {
@@ -30,7 +30,7 @@ namespace ConsoleApp.Models
             else
                 _limit = 10;
 
-            StudentOfGroup = new List<Student>();
+            StudentsOfGroup = new List<Student>();
 
             switch (category)
             {

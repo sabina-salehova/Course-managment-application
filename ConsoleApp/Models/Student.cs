@@ -8,12 +8,12 @@ namespace ConsoleApp.Models
     {
         public static uint CountOfStudents;
         uint _id;
-        public uint Id { get { return _id; } }
+        public uint Id => _id; 
         public string Name;
         public string Surname;
-        public string Fullname { get { return Name + " " + Surname; } }
+        public string Fullname => Name + " " + Surname;
         public string GroupOfStudent;
-        public bool Type;   //(zəmanətli, zəmanətsiz)
+        public bool Type;   //(guaranteed, not guaranteed)
 
         static Student()
         {
@@ -27,6 +27,12 @@ namespace ConsoleApp.Models
             Type = type;
             CountOfStudents++;
             _id = CountOfStudents;
+        }
+
+
+        public override string ToString()
+        {
+            return "Fullname: "+Fullname + ", The group of student: "+GroupOfStudent+", Type: "+Type;
         }
 
 
