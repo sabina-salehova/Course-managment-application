@@ -22,7 +22,7 @@ namespace ConsoleApp.Models
 
         public Group(Categories category, bool isOnline)
         {
-
+            IsOnline = isOnline;
             CountOfGroup++;
 
             if (isOnline)
