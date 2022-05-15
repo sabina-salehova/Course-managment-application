@@ -32,21 +32,35 @@ namespace ConsoleApp.Models
 
             StudentsOfGroup = new List<Student>();
 
+            No = ReturnPrefixOfNumber(category) + CountOfGroup;
+            
+        }
+
+        public override string ToString()
+        {
+            return "Group No: " + No + ", Group category: " + category + ", " + (IsOnline ? "Online" : "Offline") + ", Limit of student: " + Limit + ", Count of students available: " + StudentsOfGroup.Count;
+        }
+
+        public static string ReturnPrefixOfNumber(Categories category)
+        {
+            string prefix;
+
             switch (category)
             {
                 case Categories.Programming:
-                    No = "P" + CountOfGroup;
+                    prefix = "P";
                     break;
                 case Categories.Design:
-                    No = "D" + CountOfGroup;
+                    prefix = "D";
                     break;
-                case Categories.SystemAdministration:
-                    No = "SA" + CountOfGroup;
-                    break;
-            }
+                default:
+                    prefix = "SA";
+                    break;                
+             }
+
+            return prefix;
+
         }
-
-
-
     }
+    
 }

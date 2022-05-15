@@ -32,7 +32,7 @@ namespace ConsoleApp.Models
 
         public override string ToString()
         {
-            return "Fullname: "+Fullname + ", The group of student: "+GroupOfStudent+", Type: "+Type;
+            return "Fullname: "+Fullname + ", The group of student: "+GroupOfStudent+", Type: "+(Type? "guaranteed":"not guaranteed");
         }
 
 

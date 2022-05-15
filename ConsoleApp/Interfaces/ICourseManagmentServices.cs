@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
+using ConsoleApp.Models;
 
 namespace ConsoleApp.Interfaces
 {
@@ -11,9 +11,9 @@ namespace ConsoleApp.Interfaces
         void CreateGroup();
         void ShowAllGroups();
         void EditGroup();
-        void ShowAllStudentByGroup();
+        void ShowAllStudentByGroup(string no);
         void ShowAllStudents();
         void CreateStudent();
-        void RemoveStudent();
+        void RemoveStudent(string no, uint id);
     }
 }
