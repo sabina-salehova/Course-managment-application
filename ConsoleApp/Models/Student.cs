@@ -12,18 +12,18 @@ namespace ConsoleApp.Models
         public string Name;
         public string Surname;
         public string Fullname => Name + " " + Surname;
-        public string GroupOfStudent;
+        public string GroupNoOfStudent;
         public bool Type;   //(guaranteed, not guaranteed)
 
         static Student()
         {
             CountOfStudents = default(uint);
         }
-        public Student(string name, string surname, string groupOfStudent, bool type)
+        public Student(string name, string surname, string groupNoOfStudent, bool type)
         {
             Name = name;
             Surname = surname;
-            GroupOfStudent = groupOfStudent;
+            GroupNoOfStudent = groupNoOfStudent;
             Type = type;
             CountOfStudents++;
             _id = CountOfStudents;
@@ -32,7 +32,7 @@ namespace ConsoleApp.Models
 
         public override string ToString()
         {
-            return "Fullname: "+Fullname + ", The group of student: "+GroupOfStudent+", Type: "+(Type? "guaranteed":"not guaranteed");
+            return "Fullname: "+Fullname + ", The group of student: "+ GroupNoOfStudent + ", Type: "+(Type? "guaranteed":"not guaranteed");
         }
 
 
