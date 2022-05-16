@@ -7,7 +7,7 @@ using ConsoleApp.Enum;
 
 namespace ConsoleApp.Services
 {
-    class CourseManagmentService : ICourseManagmentServices
+    class CourseManagmentServices : ICourseManagmentServices
 
     {
         List<Group> _groups = new List<Group>();
@@ -17,40 +17,33 @@ namespace ConsoleApp.Services
         {
             Group group = new Group(category,isOnline);             
              _groups.Add(group);
-            return $"{group.Name} successfully created";      
+            return $"Group name: {group.Name} successfully created";      
          }
 
-        public string CreateStudent(string name, string surname, string groupNoOfStudent, bool type)
+        public string CreateStudent(string name, string surname, string groupNameOfStudent, bool type)
         {
-            if (_groups.Count == 0)
-            {
-                return "No group has been created yet";
-            }
-
-            Group group = findGroup(groupNoOfStudent);
+            Group group = findGroup(groupNameOfStudent);
 
             if (group == null)
             {
-                return $"There is no group => {groupNoOfStudent}";
+                return $"There is no group => {groupNameOfStudent}";
             }
 
-            Student student = new Student(name, surname, groupNoOfStudent,type);
+            Student student = new Student(name, surname, groupNameOfStudent, type);
             group.StudentsOfGroup.Add(student);
             return $"{student.Fullname} successfully created";
         }
 
         public string EditGroup(uint oldGroupNo, uint newGroupNo, Categories category)
         {
-            if (_groups.Count == 0)
+            Group group = findGroup(category, oldGroupNo);
+            if (group != null)
             {
-                return "No group has been created yet";
-            }
-
-            if (findGroup(category,oldGroupNo) == null)
-            {
-                if (findGroup(category, newGroupNo) != null)
+                if (findGroup(category, newGroupNo) == null)
                 {
-                    findGroup(category, oldGroupNo).No = newGroupNo;
+                    group.No = newGroupNo;                    
+                    group.Name = Group.ReturnPrefixOfName(category) + group.No;
+
                     return "The change was successfully implemented";
                 }
                 else
@@ -64,7 +57,7 @@ namespace ConsoleApp.Services
             List<Group> sameNoGroups = new List<Group>();
             foreach (Group item in Groups)
             {
-                if (item.category == category)
+                if (item.Category == category)
                     sameNoGroups.Add(item);
             }
             return sameNoGroups;
@@ -72,35 +65,31 @@ namespace ConsoleApp.Services
 
         public Group findGroup(Categories category, uint no)
         {
-            foreach (Group item in findGroupsOfSameCategory(category))
+            if (findGroupsOfSameCategory(category) != null)
             {
-                if (item.No == no)
-                    return item;
+                foreach (Group item in findGroupsOfSameCategory(category))
+                {
+                    if (item.No == no)
+                        return item;
+                }
             }
-
             return null;
         }
 
-        public string RemoveStudent(string name, uint id)
-        {
-            if (_groups.Count == 0)
-            {
-                return "No group has been created yet";
-            }
-
-            if (Student.CountOfStudents == 0)
-            {
-                return "No student has been created yet";
-            }
-            
-            Group group = findGroup(name);
+        public string RemoveStudent(string groupName, uint id)
+        {        
+            Group group = findGroup(groupName);
 
             if (group == null)
             {
-                return $"There is group with this name => {name}";
+                return $"There is group with this name => {groupName}";
             }
-            
-            
+
+            if (group.StudentsOfGroup.Count == 0)
+            {
+                return "There are no students in the group.";
+            }
+
             foreach (Student item in group.StudentsOfGroup)
             {
                 if (item.Id == id)
@@ -110,43 +99,31 @@ namespace ConsoleApp.Services
                 }
             }
 
-            return $"There is student with this id => {id}";
+            return $"There is not student with this id => {id}";
 
         }
         
         public void ShowAllGroups()
-        {
-            if (_groups.Count == 0)
-            {
-                Console.WriteLine("No group has been created yet");
-                return;
-            }
+        {           
             foreach (Group item in Groups)
             {
                 Console.WriteLine(item);
             }
-
         }
 
-        public void ShowAllStudentByGroup(string name)
+        public void ShowAllStudentByGroup(string groupName)
         {
-            if (_groups.Count == 0)
-            {
-                Console.WriteLine("No group has been created yet");
-                return;
-            }
-
-            Group group = findGroup(name);
+            Group group = findGroup(groupName);
 
             if (group == null)
             {
-                Console.WriteLine($"There is group with this name => {name}");
+                Console.WriteLine($"There is group with this name => {groupName}");
                 return;
             }
 
             if (group.StudentsOfGroup.Count == 0)
             {
-                Console.WriteLine($"There are no students in the group with this name => {name}");
+                Console.WriteLine($"There are no students in the group with this name => {groupName}");
                 return;
             }
 
@@ -171,7 +148,7 @@ namespace ConsoleApp.Services
 
         public void ShowAllStudents()
         {
-             if (_groups.Count == 0)
+             if (Groups.Count == 0)
             {
                 Console.WriteLine("No group has been created yet");
                 return;

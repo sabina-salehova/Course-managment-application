@@ -10,7 +10,7 @@ namespace ConsoleApp.Models
         public static uint CountOfGroup;
         public uint No;
         public string Name;
-        public Categories category;
+        public Categories Category;
         public bool IsOnline;
         byte _limit;
         public byte Limit => _limit;
@@ -34,12 +34,13 @@ namespace ConsoleApp.Models
             StudentsOfGroup = new List<Student>();
             No = CountOfGroup;
             Name = ReturnPrefixOfName(category) + No;
+            Category = category;
             
         }
 
         public override string ToString()
         {
-            return "Group Name: " + Name + ", Group category: " + category + ", " + (IsOnline ? "Online" : "Offline") + ", Limit of student: " + Limit + ", Count of students available: " + StudentsOfGroup.Count;
+            return "Group Name: " + Name + ", Group category: " + Category + ", " + (IsOnline ? "Online" : "Offline") + ", Limit of student: " + Limit + ", Count of students available: " + StudentsOfGroup.Count;
         }
 
         public static string ReturnPrefixOfName(Categories category)
