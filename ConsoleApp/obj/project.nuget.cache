@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gtNbVFACsfQSzuGn8Oa1ySkS+vnr/rvrwfrMJ8nGqk46BpMXenJdlNJEtb8KAdnUqG8Oagf96tCnmggya/t/zg==",
+  "dgSpecHash": "RlGL0j+smKGcj2l9OXzL5KEcvIk3iTtM2SplaPmiCEdDc/aFA4aNFYXzby/Dql9/a7dpYuhM5VLkeltxAGdpCg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sabina\\Desktop\\Course-managment-application\\ConsoleApp\\ConsoleApp.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Sabina\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.18\\microsoft.netcore.app.host.win-x64.3.1.18.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\User\\Desktop\\Course-managment-application\\ConsoleApp\\ConsoleApp.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

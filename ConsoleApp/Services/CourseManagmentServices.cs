@@ -15,10 +15,42 @@ namespace ConsoleApp.Services
 
         public string CreateGroup(Categories category, bool isOnline)
         {
-            Group group = new Group(category,isOnline);             
-             _groups.Add(group);
+
+            Group group = new Group(category,isOnline);
+
+
+            if (findGroup(group.Name) != null)
+            {
+               group.No = findNo(group.Category);
+               group.Name=Group.ReturnPrefixOfName(category)+group.No;
+            }
+            _groups.Add(group);
             return $"Group name: {group.Name} successfully created";      
          }
+
+        public uint findNo(Categories category)
+        {
+            uint no = 1;
+            bool result;
+            do
+            {
+                foreach (Group item in findGroupsOfSameCategory(category))
+                {
+                    if (item.No == no)
+                    {
+                        result = false;
+                        no++;
+                    }
+                    else
+                        result = false;
+                }
+
+            } while (false);
+
+            return no;
+                     
+
+        }
 
         public string CreateStudent(string name, string surname, string groupNameOfStudent, bool type)
         {
@@ -75,6 +107,7 @@ namespace ConsoleApp.Services
             }
             return null;
         }
+               
 
         public string RemoveStudent(string groupName, uint id)
         {        

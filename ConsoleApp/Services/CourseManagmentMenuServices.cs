@@ -36,9 +36,9 @@ namespace ConsoleApp.Services
             }
 
             Console.Write("Please enter Group no: ");
-            uint oldNo = (uint)GetPositiveIntegerNumber(Console.ReadLine());
+            uint oldNo = GetPositiveIntegerNumber(Console.ReadLine());
             Console.Write("Please enter new Group no: ");
-            uint newNo = (uint)GetPositiveIntegerNumber(Console.ReadLine());
+            uint newNo = GetPositiveIntegerNumber(Console.ReadLine());
 
             Console.WriteLine(courseManagmentServices.EditGroup(oldNo, newNo, GetCategory()));
         }
@@ -98,7 +98,7 @@ namespace ConsoleApp.Services
             Console.Write("Please enter Group name: ");
             string groupName = Console.ReadLine();
             Console.Write("Please enter new Student id: ");
-            uint id = (uint)GetPositiveIntegerNumber(Console.ReadLine());
+            uint id = GetPositiveIntegerNumber(Console.ReadLine());
             Console.WriteLine(courseManagmentServices.RemoveStudent(groupName, id));
         }
 
@@ -160,16 +160,16 @@ namespace ConsoleApp.Services
             } while (true);
         }
 
-        public static int GetPositiveIntegerNumber(string str)
+        public static uint GetPositiveIntegerNumber(string str)
         {
-            int number;
-            while (!int.TryParse(str.Trim(), out number) && number<0)
+            uint number;
+            while (!uint.TryParse(str.Trim(), out number) || number<=0)
             {
                 Console.Write("Please enter correct positive integer number: ");
                 str = Console.ReadLine();
             }
 
-            return Convert.ToInt32(number);
+            return number;
 
         }
 
