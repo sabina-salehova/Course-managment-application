@@ -82,7 +82,7 @@ namespace ConsoleApp.Services
 
             if (group == null)
             {
-                return $"There is group with this name => {groupName}";
+                return $"There is not group with this name => {groupName}";
             }
 
             if (group.StudentsOfGroup.Count == 0)
@@ -95,7 +95,7 @@ namespace ConsoleApp.Services
                 if (item.Id == id)
                 {
                     group.StudentsOfGroup.Remove(item);
-                    return "This student has been succesfully reserved";
+                    return "The student has been successfully remove.";
                 }
             }
 
