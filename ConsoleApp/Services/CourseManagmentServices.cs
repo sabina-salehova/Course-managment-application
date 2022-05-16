@@ -153,7 +153,7 @@ namespace ConsoleApp.Services
 
             if (group == null)
             {
-                Console.WriteLine($"There is group with this name => {groupName}");
+                Console.WriteLine($"There is no group with this name => {groupName}");
                 return;
             }
 
