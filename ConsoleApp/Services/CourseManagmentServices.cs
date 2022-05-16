@@ -174,7 +174,7 @@ namespace ConsoleApp.Services
         {
             foreach (Group item in Groups)
             {
-                if (item.Name.ToLower() == name.ToLower().Trim())
+                if (item.Name == name.Trim())
                 {
                     return item;
                 }

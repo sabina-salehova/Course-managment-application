@@ -57,7 +57,7 @@ namespace ConsoleApp.Services
             }
 
             Console.Write("Please enter Group name: ");
-            string answer = Console.ReadLine();
+            string answer = checkString(Console.ReadLine());
             courseManagmentServices.ShowAllStudentByGroup(answer);
         }
 
@@ -70,11 +70,11 @@ namespace ConsoleApp.Services
             }
 
             Console.Write("Please enter Student name: ");
-            string name = Console.ReadLine();
+            string name = checkString(Console.ReadLine());
             Console.Write("Please enter Student surname: ");
-            string surName = Console.ReadLine();
+            string surName = checkString(Console.ReadLine());
             Console.Write("Please enter Group name: ");
-            string groupName = Console.ReadLine();
+            string groupName = checkString(Console.ReadLine());
             Console.Write("Is the student guaranteed education? (please enter \"yes\" or \"no\": ");
             string answer = Console.ReadLine();
 
@@ -96,9 +96,9 @@ namespace ConsoleApp.Services
             }
 
             Console.Write("Please enter Group name: ");
-            string groupName = Console.ReadLine();
+            string groupName = checkString(Console.ReadLine());
             Console.Write("Please enter new Student id: ");
-            uint id = GetPositiveIntegerNumber(Console.ReadLine());
+            uint id = GetPositiveIntegerNumber(checkString(Console.ReadLine()));
             Console.WriteLine(courseManagmentServices.RemoveStudent(groupName, id));
         }
 
@@ -173,5 +173,15 @@ namespace ConsoleApp.Services
 
         }
 
+        public static string checkString(string str)
+        {
+            while (string.IsNullOrWhiteSpace(str) || string.IsNullOrEmpty(str))
+            {
+                Console.Write("Please enter value: ");
+                str = Console.ReadLine();
+            }
+
+            return str;
+        }
     }
 }
