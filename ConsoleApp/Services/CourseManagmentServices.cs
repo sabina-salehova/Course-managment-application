@@ -30,25 +30,18 @@ namespace ConsoleApp.Services
 
         public uint findNo(Categories category)
         {
-            uint no = 1;
-            bool result;
-            do
+            uint n = 1;
+            List<uint> numbers = new List<uint>();
+            foreach (Group item in findGroupsOfSameCategory(category))
             {
-                foreach (Group item in findGroupsOfSameCategory(category))
-                {
-                    if (item.No == no)
-                    {
-                        result = false;
-                        no++;
-                    }
-                    else
-                        result = false;
-                }
+                numbers.Add(item.No);
+            }
 
-            } while (false);
-
-            return no;
-                     
+            while (numbers.Contains(n))
+            {
+                n++;
+            }
+            return n;
 
         }
 
