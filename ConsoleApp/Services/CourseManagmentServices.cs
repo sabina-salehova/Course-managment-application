@@ -61,6 +61,9 @@ namespace ConsoleApp.Services
                 return $"There is no group => {groupNameOfStudent}";
             }
 
+            if (group.StudentsOfGroup.Count == group.Limit)
+                return "Not created, The group is full.";
+
             Student student = new Student(name, surname, groupNameOfStudent, type);
             group.StudentsOfGroup.Add(student);
             return $"{student.Fullname} successfully created";
